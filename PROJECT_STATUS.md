@@ -6,10 +6,10 @@
 **Development Environment:** GitHub Codespaces  
 **Language:** Python  
 **Current Milestone:** M1 — Foundations and Real Industrial Data Integration  
-**Last Completed Step:** Step 27.12-11R — Normal/Fault RMS Separation Investigation  
-**Next Step:** Step 27.12-11S — CWRU Acquisition and Preprocessing Confound Investigation  
+**Last Completed Step:** Step 27.12-11S — CWRU Acquisition and Preprocessing Confound Investigation  
+**Next Step:** Step 27.12-11T — Official CWRU Acquisition Metadata Verification  
 **Automated Tests:** 245 passed (last full suite verified)  
-**Last Confirmed GitHub Commit:** `947a0a6` (additional CWRU fault evaluation)  
+**Last Confirmed GitHub Commit:** `ec2c2f3` (RMS separation investigation)  
 
 ---
 
@@ -121,6 +121,33 @@ Research report: `docs/step27_rms_separation_investigation.md`
 Analysis module: `src/rms_distribution_analysis.py`
 
 Tests: `tests/test_rms_distribution_analysis.py`
+
+---
+
+## Latest Research Result — Acquisition and Preprocessing Investigation
+
+Step 27.12-11S investigated sampling-rate harmonization,
+frequency-band energy, and RMS detection sensitivity.
+
+- CWRU dataset: 4 Normal and 45 Fault recordings.
+- Normal resampling RMS reductions: 2.71% to 12.08%.
+- Original Normal power above 6 kHz: 5.52% to 23.49%.
+- Applying the frozen threshold to original 48 kHz
+  Normal recording 97 produced 29% anomalous windows.
+- The 3 kHz low-pass filter caused Fault 197 to be
+  missed when the original threshold was retained.
+- Low-pass diagnostic threshold: 0.050110350,
+  calibrated using Normal recordings 97 and 98.
+- Low-pass diagnostic Fault detections: 45/45.
+- Normal evaluation false alarms: 0/2.
+- Low-pass window RMS separation gap: -0.009365587.
+- Original frozen baseline and detection rules unchanged.
+- Automated tests: 245 passed (last full suite verified).
+- Results are descriptive; independent physical-bearing
+  generalization remains unverified.
+- Original acquisition-condition equivalence remains unverified.
+
+Research report: `docs/step27_acquisition_preprocessing_investigation.md`
 
 ---
 
