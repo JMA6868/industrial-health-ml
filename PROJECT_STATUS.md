@@ -6,10 +6,10 @@
 **Development Environment:** GitHub Codespaces  
 **Language:** Python  
 **Current Milestone:** M1 — Foundations and Real Industrial Data Integration  
-**Last Completed Step:** Step 27.12-11S — CWRU Acquisition and Preprocessing Confound Investigation  
-**Next Step:** Step 27.12-11T — Official CWRU Acquisition Metadata Verification  
+**Last Completed Step:** Step 27.12-11T — Official CWRU Acquisition Metadata Verification  
+**Next Step:** Step 27.12-11U — Stage 1 Evaluation Limitations and Next Experiment Design  
 **Automated Tests:** 245 passed (last full suite verified)  
-**Last Confirmed GitHub Commit:** `ec2c2f3` (RMS separation investigation)  
+**Last Confirmed GitHub Commit:** `07d6d1b` (metadata audit and presentation planning)  
 
 ---
 
@@ -255,10 +255,13 @@ Lesson learned details:
 | Stage 1 expansion evaluation protocol | Frozen — five fault recordings reserved for evaluation |
 | Stage 2 multiclass evaluation | Completed — evaluation utilities and 11 automated tests |
 | Stage 2 diagnosis model | Optional — deferred until Stage 1 delivery |
+| Expanded CWRU Stage 1 evaluation | Completed — 45/45 descriptive Fault detections; 0/2 evaluated Normal false alarms |
+| RMS separation and preprocessing investigation | Completed — amplitude sensitivity and acquisition confounds documented |
+| Official CWRU acquisition metadata audit | Completed — 19 Outer Race recording mappings reviewed against official tables; unresolved acquisition limitations retained |
 | Multimodal sensor fusion | Not started |
 | Interactive ML demonstration | Not started |
 
-**Current focus:** CWRU-only Stage 1 anomaly detection (Must-have). Stage 2 fault diagnosis is Good-to-have and deferred. Full CWRU dataset suitability audit is in progress. Sampling-rate harmonization and CWRU preprocessing modules are implemented with nine new tests; the first harmonized Stage 1 evaluation is complete: Normal false alarms 0/2, fault detections 5/5, and 1010/1010 fault windows flagged. Expanded CWRU evaluation design is next. Frozen experimental results remain unchanged.
+**Current focus:** CWRU-only Stage 1 anomaly detection (Must-have). Frozen RMS threshold: 0.07467624803042527. Descriptive evaluation: 45/45 Fault recordings detected and 0/2 evaluated Normal false alarms. Step 27.12-11T official metadata audit completed, including 19 Outer Race recording mappings. Sensor calibration, acquisition gain equivalence, physical-bearing independence, and cross-equipment generalization remain unverified. Stage 2 fault diagnosis remains optional and deferred. Next: define Stage 1 evaluation limitations and design the next leakage-aware experiment.
 
 ---
 

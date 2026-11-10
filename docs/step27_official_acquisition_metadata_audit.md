@@ -2,7 +2,7 @@
 
 ## Status
 
-Official documentation review in progress.
+Completed — published CWRU acquisition metadata reviewed. Unverified acquisition details remain documented.
 
 ## Verified Official Information
 
@@ -23,9 +23,48 @@ Official documentation review in progress.
 | 0.021 | Inner race / Outer race / Ball | 0.011 | SKF |
 | 0.028 | Inner race | 0.050 | NTN |
 | 0.028 | Ball | 0.150 | NTN |
+| 0.040 | Outer race | 0.050 | NTN |
+
+The 0.040-inch outer-race specification is listed in the
+official fault specifications, but it is not listed in the
+published 12 kHz Drive-End data table.
 
 The 0.028-inch subset differs in diameter, defect depth,
 and manufacturer. These factors must not be treated as independent.
+
+## Outer-Race Fault Orientation
+
+Official CWRU documentation describes outer-race fault
+positions at 3, 6, and 12 o'clock relative to the load zone.
+
+Fault orientation may influence the measured vibration
+response and RMS amplitude.
+
+The 19 evaluated outer-race recordings have been checked
+against the official CWRU 12 kHz Drive-End data table.
+
+Therefore, RMS differences must not be attributed to
+fault diameter or severity alone without considering
+fault orientation and other acquisition conditions.
+
+## Evaluated Outer-Race Recording Coverage
+
+Project records identify the following evaluated recordings:
+
+| Orientation | Recording IDs | Count |
+|---|---|---:|
+| 6:00 | 130-133, 197, 234-237 | 9 |
+| 3:00 | 144, 246-249 | 5 |
+| 12:00 | 156, 258-261 | 5 |
+| Total | | 19 |
+
+All 19 outer-race recordings were detected by the frozen
+Stage 1 RMS baseline in the project's descriptive evaluation.
+
+These classifications are consistent across existing project
+documents and the official CWRU 12 kHz Drive-End data table.
+This verifies published recording metadata, not physical-bearing
+independence or acquisition-gain equivalence.
 
 ## Unverified Information
 
