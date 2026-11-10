@@ -151,6 +151,74 @@ Research report: `docs/step27_acquisition_preprocessing_investigation.md`
 
 ---
 
+# Engineering Lessons Learned
+
+## LL01 — Understand the Dataset Before Modeling
+
+**Status:** Confirmed engineering lesson learned.
+
+**Presentation Requirement:** MUST INCLUDE in the Middle-Level PPT.
+
+During the early development of IndustrialSense AI, we
+validated data formats, signal loading, preprocessing,
+and dataset splitting.
+
+However, we reviewed the complete experimental background
+and acquisition metadata too late in the project.
+
+Subsequent investigation identified differences in fault
+depth, bearing manufacturer, and sampling-rate processing
+that could complicate interpretation of RMS detection margins.
+
+**Key Lesson:** Data provenance and acquisition conditions
+must be audited before model development and evaluation,
+not only after obtaining promising results.
+
+**Future Improvement:** Perform a formal Dataset Provenance
+& Acquisition Audit during initial dataset exploration.
+
+Full lesson learned:
+`docs/lessons_learned/LL01_dataset_provenance.md`
+
+Supporting audit:
+`docs/step27_official_acquisition_metadata_audit.md`
+
+---
+
+# Presentation Planning
+
+IndustrialSense AI will have three presentation versions
+after the project reaches a suitable completion stage:
+
+1. High-Level PPT — hiring managers, engineering managers,
+   and nontechnical audiences.
+2. Middle-Level PPT — ML engineers, research engineers,
+   and technical interviewers.
+3. Detailed Technical PPT — technical reviewers,
+   research discussions, and code walkthroughs.
+
+Presentation ideas, research evidence, figures, and
+content readiness are tracked in:
+
+`docs/INDUSTRIALSENSE_PRESENTATION_PLAN.md`
+
+The presentation plan is a living document and should
+be updated whenever new presentation-worthy ideas emerge.
+
+**Required Middle-Level Content:**
+
+LL01 — Understand the Dataset Before Modeling.
+
+This lesson explains why dataset provenance and
+acquisition metadata should be reviewed before
+model development and evaluation.
+
+Lesson learned details:
+
+`docs/lessons_learned/LL01_dataset_provenance.md`
+
+---
+
 # 2. Current Project Status
 
 | Component | Status |
