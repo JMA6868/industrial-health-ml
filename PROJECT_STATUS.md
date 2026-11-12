@@ -6,10 +6,10 @@
 **Development Environment:** GitHub Codespaces  
 **Language:** Python  
 **Current Milestone:** M1 — Foundations and Real Industrial Data Integration  
-**Last Completed Step:** Step 27.12-11T — Official CWRU Acquisition Metadata Verification  
-**Next Step:** Step 27.12-11U — Stage 1 Evaluation Limitations and Next Experiment Design  
-**Automated Tests:** 245 passed (last full suite verified)  
-**Last Confirmed GitHub Commit:** `07d6d1b` (metadata audit and presentation planning)  
+**Last Completed Step:** Step 27.12-11U — U1–U4 Experiments  
+**Next Step:** Step 27.12-11U — Final Review and Git Commit  
+**Automated Tests:** 292 passed (last full suite verified)  
+**Last Confirmed GitHub Commit:** `47b6375` (U1/U2 amplitude stress tests)  
 
 ---
 
@@ -216,6 +216,84 @@ model development and evaluation.
 Lesson learned details:
 
 `docs/lessons_learned/LL01_dataset_provenance.md`
+
+---
+
+## Latest Research Result — Stage 1 Robustness and Alarm Timing
+
+Step 27.12-11U completed four diagnostic experiments
+using the frozen Stage 1 CWRU RMS baseline.
+
+### U1 — Normal Amplitude Stress
+
+- Normal recordings: 99 and 100.
+- Amplitude scales: 1.00, 1.05, 1.10, 1.20, 1.50.
+- No false alarms at scales 1.00 through 1.20.
+- Both Normal recordings triggered alarms at scale 1.50.
+- Critical false-alarm scale: approximately 1.257245
+  for Recording 99 and 1.237108 for Recording 100.
+
+### U2 — Fault Attenuation Stress
+
+- Fault recordings: 45.
+- Detection at scale 1.00: 45/45.
+- Detection at scale 0.75: 45/45.
+- Detection at scale 0.50: 41/45.
+- Detection at scale 0.25: 32/45.
+- Attenuation sensitivity varies across recordings and
+  descriptive fault groups; physical causes are not isolated.
+
+### U3 — Sequential Alarm Analysis
+
+- Experimental persistence values: K = 1, 3, 5.
+- CWRU evaluations: 47 recordings x 3 K = 141.
+- Normal alarms: 0/2 for every K.
+- Fault alarms: 45/45 for every K.
+- First fault alarm times: 0.10, 0.20, 0.30 seconds.
+- Synthetic transient sequences demonstrated that higher K
+  rejects shorter anomalous-window runs.
+- Synthetic sequences do not establish field false-alarm rates.
+
+### U4 — Observation-Start Timing
+
+- Start indices: 0, 10, 50, 100.
+- Persistence values: K = 1, 3, 5.
+- Evaluations: 47 recordings x 4 starts x 3 K = 564.
+- Fault alarms: 45/45 for every tested configuration.
+- Normal alarms: 0/2 for every tested configuration.
+- All faults alarmed at the earliest possible time
+  for each K and observation start.
+- Observation-start timing is not fault-onset detection delay.
+
+### Verification and Evidence
+
+- Full automated regression suite: 292 passed.
+- U3 and U4 each added 14 unit tests.
+- U1/U2 pushed in Git commit `47b6375`.
+- U3/U4 results prepared for Git review and commit.
+- Frozen RMS threshold and offline 5% rule unchanged.
+
+Reports:
+
+- `docs/step27_u1_normal_amplitude_stress_results.md`
+- `docs/step27_u2_fault_attenuation_results.md`
+- `docs/step27_u3_sequential_alarm_results.md`
+- `docs/step27_u4_observation_start_timing_results.md`
+
+### Scientific Limitations
+
+- Existing CWRU recordings only; no independent new
+  physical experiments or cross-bearing holdout.
+- Normal and Fault acquisition/preprocessing differences
+  may contribute to the observed separation.
+- Two evaluated Normal recordings cannot establish
+  industrial field false-alarm rates.
+- RMS windows overlap and are correlated.
+- U3/U4 observation times exclude processing latency.
+- No genuine fault-onset timestamps are available.
+- Synthetic transient examples validate alarm logic only.
+- Realistic operating-condition shift, interference,
+  and emerging-fault scenarios remain unresolved.
 
 ---
 

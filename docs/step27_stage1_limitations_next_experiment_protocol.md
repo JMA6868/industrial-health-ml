@@ -2,7 +2,7 @@
 
 ## Status
 
-Protocol drafting in progress. No new experiments executed.
+U1 and U2 completed; U3 protocol defined. No U3 experiments executed.
 
 ## Objective
 
@@ -114,6 +114,113 @@ the frozen Stage 1 recording-level detection rate?
 - Do not recalibrate or optimize the frozen threshold.
 - Do not treat scaled recordings as independent samples.
 - Compare with Step 27.12-11R without replacing its results.
+
+## Experiment U3 — Sequential Alarm Analysis
+
+### Research Question
+
+How does the required number of consecutive anomalous
+windows affect alarm outcomes and observation-start timing?
+
+### Inputs
+
+- CWRU Normal evaluation recordings: 99, 100.
+- All 45 previously evaluated Fault recordings.
+- Original harmonized RMS window sequences.
+- Frozen RMS threshold: 0.07467624803042527.
+- Experimental persistence values: K = 1, 3, 5.
+
+### Alarm Rule
+
+An alarm occurs when K consecutive windows satisfy
+RMS > frozen threshold.
+
+Report only the first alarm per recording.
+
+### Timing Definition
+
+- Sampling rate: 12000 Hz.
+- Window duration: 100 ms.
+- Window step: 50 ms.
+- First window ends at 100 ms.
+- A run of K anomalies starting at window zero
+  can trigger at 100 + 50 * (K - 1) ms.
+
+### Metrics
+
+- Alarm outcomes for each K.
+- Normal recordings with alarms.
+- Fault recordings with alarms.
+- First alarm window index.
+- Observation-start-to-first-alarm time.
+- Comparison with frozen offline recording decisions.
+
+### Scientific Boundaries
+
+- Experimental online alarm strategy only.
+- Do not modify the frozen offline 5% rule.
+- Do not recalibrate the RMS threshold.
+- No true fault-onset labels are available.
+- Alarm timing excludes processing and communication delays.
+- Overlapping windows are correlated observations.
+- Results are descriptive, not independent generalization.
+
+## Experiment U4 — Observation-Start Timing
+
+### Research Question
+
+How sensitive are sequential alarm outcomes and timing
+to the starting position of the observation window?
+
+### Inputs
+
+- CWRU Normal evaluation recordings: 99, 100.
+- All 45 previously evaluated Fault recordings.
+- Frozen RMS threshold: 0.07467624803042527.
+- Observation start indices: 0, 10, 50, 100.
+- Experimental persistence values: K = 1, 3, 5.
+- Expected evaluations: 564.
+
+### Procedure
+
+For each recording and observation start index:
+
+1. Preserve the original ordered RMS window sequence.
+2. Select the suffix beginning at the start index.
+3. Reset the consecutive anomaly counter.
+4. Apply the experimental K-consecutive alarm rule.
+5. Record alarm outcome and first alarm position.
+6. Calculate elapsed time relative to the new observation
+   start using original window geometry.
+
+### Timing Definition
+
+For a first alarm at absolute window index j
+and observation start window index s:
+
+Elapsed time = ((j - s) * 600 + 1200) / 12000 seconds.
+
+The first available complete window ends 100 ms
+after the selected observation start.
+
+### Metrics
+
+- Alarm coverage by start index and K.
+- Normal recordings with alarms.
+- Fault recordings with alarms.
+- First alarm timing: minimum, mean, maximum.
+- Fault recordings with no alarm.
+- Differences from U3 start-index-zero results.
+
+### Scientific Boundaries
+
+- Observation start is not a physical fault-onset timestamp.
+- Window suffixes are not independent recordings.
+- Existing CWRU recordings only; no new physical experiments.
+- Do not retune the RMS threshold or frozen offline rule.
+- Timing excludes computation and communication latency.
+- Overlapping windows are correlated.
+- No independent cross-bearing generalization claim.
 
 ## Next Action
 
