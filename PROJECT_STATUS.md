@@ -6,10 +6,10 @@
 **Development Environment:** GitHub Codespaces  
 **Language:** Python  
 **Current Milestone:** M1 — Foundations and Real Industrial Data Integration  
-**Last Completed Step:** Step 27.12-11V — Normal Operating-Condition Analysis  
-**Next Step:** Step 27.12-11V — Final Review and Git Commit  
-**Automated Tests:** 312 passed (last full suite verified)  
-**Last Confirmed GitHub Commit:** `f979260` (U3/U4 alarm experiments)  
+**Last Completed Step:** Step 27.12-11W — W1–W3 Robustness Research  
+**Next Step:** Step 27.12-11W — Final Review and Git Commit  
+**Automated Tests:** 326 passed (last full suite verified)  
+**Last Confirmed GitHub Commit:** `520a900` (Normal operating-condition analysis)  
 
 ---
 
@@ -351,6 +351,102 @@ calibration recording under simulated uniform scaling.
 Review the Step 27.12-11V files, commit the results,
 and select the next research task without retuning
 the frozen baseline on previously evaluated recordings.
+
+---
+
+## Latest Research Result — Stage 1 Robustness Strategy
+
+Step 27.12-11W investigated three candidate strategies
+for improving Stage 1 robustness without modifying
+the frozen RMS baseline.
+
+### W1 — Normalization Feasibility
+
+- Fixed standardization fitted using Normal 97 and 98.
+- Raw and standardized RMS decisions matched across
+  1,305 windows from seven recordings.
+- Fixed positive affine standardization with a
+  consistently transformed threshold adds no detection benefit.
+- Per-recording normalization may suppress fault information.
+- Healthy-reference normalization lacks sufficient data:
+  only one Normal recording per motor-load condition.
+- Decision: Do not implement a normalization detector yet.
+
+### W2 — RMS and Crest Factor
+
+- Implemented harmonized 12 kHz multifeature extraction.
+- Window size: 1200 samples; step: 600 samples.
+- RMS extraction verified against the frozen baseline.
+- Crest Factor P99 threshold: 4.156405692.
+- CF threshold fitted using Normal 97 and 98 only.
+- Experimental combination: RMS OR Crest Factor.
+
+Under simulated Fault amplitude attenuation:
+
+| Scale | RMS-only Offline | RMS+CF Offline |
+|---|---:|---:|
+| 1.00 | 45/45 | 45/45 |
+| 0.75 | 45/45 | 45/45 |
+| 0.50 | 41/45 | 42/45 |
+| 0.25 | 32/45 | 39/45 |
+
+- Combined detection recovered seven additional
+  Fault recordings at scale 0.25.
+- The OR rule introduced a Normal recording alarm
+  on previously evaluated Recording 100.
+- Decision: Retain as exploratory, not production baseline.
+
+### W3 — Online Alarm Persistence
+
+Experimental K-consecutive anomaly rules:
+
+| K | Normal RMS Alarms | Normal OR Alarms |
+|---|---:|---:|
+| 1 | 1/4 | 4/4 |
+| 3 | 0/4 | 1/4 |
+| 5 | 0/4 | 0/4 |
+
+At simulated Fault amplitude scale 0.25:
+
+| K | Fault RMS Alarms | Fault OR Alarms |
+|---|---:|---:|
+| 1 | 35/45 | 44/45 |
+| 3 | 29/45 | 39/45 |
+| 5 | 28/45 | 38/45 |
+
+- Persistence reduced Normal alarms in the evaluated sample.
+- Larger K could also miss weak or short abnormal events.
+- Online K-consecutive alarms are different from the
+  frozen offline recording-level >5% anomaly rule.
+- No deployment persistence value was selected.
+
+### Engineering Deliverables
+
+- `docs/step27_w_stage1_robustness_improvement_protocol.md`
+- `src/stage1_harmonized_multifeature.py`
+- `tests/test_stage1_harmonized_multifeature.py`
+- 14 new automated tests passed.
+- Full regression suite: 326 passed.
+- Frozen Stage 1 RMS threshold and offline rule unchanged.
+
+### Scientific Limitations
+
+- Previously evaluated CWRU recordings were reused.
+- Simulated amplitude scaling is not a physical experiment.
+- Normal calibration data are limited to two recordings.
+- No independent cross-bearing validation.
+- No verified industrial field false-alarm rate.
+- Overlapping windows are correlated observations.
+- Normal/Fault acquisition differences remain unresolved.
+- Exploratory results cannot establish optimal model
+  selection or independent performance improvement.
+
+### Engineering Decision
+
+Keep the existing RMS baseline frozen.
+
+Retain RMS + CF and online persistence as research
+candidates requiring better independent evaluation data.
 
 ---
 
