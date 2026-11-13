@@ -6,10 +6,10 @@
 **Development Environment:** GitHub Codespaces  
 **Language:** Python  
 **Current Milestone:** M1 — Foundations and Real Industrial Data Integration  
-**Last Completed Step:** Step 27.12-11U — U1–U4 Experiments  
-**Next Step:** Step 27.12-11U — Final Review and Git Commit  
-**Automated Tests:** 292 passed (last full suite verified)  
-**Last Confirmed GitHub Commit:** `47b6375` (U1/U2 amplitude stress tests)  
+**Last Completed Step:** Step 27.12-11V — Normal Operating-Condition Analysis  
+**Next Step:** Step 27.12-11V — Final Review and Git Commit  
+**Automated Tests:** 312 passed (last full suite verified)  
+**Last Confirmed GitHub Commit:** `f979260` (U3/U4 alarm experiments)  
 
 ---
 
@@ -294,6 +294,63 @@ Reports:
 - Synthetic transient examples validate alarm logic only.
 - Realistic operating-condition shift, interference,
   and emerging-fault scenarios remain unresolved.
+
+---
+
+## Latest Research Result — Normal Operating-Condition Sensitivity
+
+Step 27.12-11V investigated the frozen Stage 1 RMS
+detector across the four available CWRU Normal recordings.
+
+### Normal Load Comparison
+
+| Recording | Load | Role | Critical Scale |
+|---|---|---|---:|
+| 97 | 0 HP | Calibration | 1.002744124 |
+| 98 | 1 HP | Calibration | 1.164206236 |
+| 99 | 2 HP | Previously evaluated | 1.257245490 |
+| 100 | 3 HP | Previously evaluated | 1.237108443 |
+
+All four original recordings remain Normal under
+the frozen recording-level anomaly fraction > 0.05 rule.
+
+### Key Finding
+
+Recording 97 had 3 anomalous windows among 100.
+A uniform amplitude increase slightly above 0.2744%
+caused 6/100 windows to exceed the frozen RMS threshold,
+triggering the recording-level alarm.
+
+This demonstrates a small alarm margin for this specific
+calibration recording under simulated uniform scaling.
+
+### Engineering Deliverables
+
+- `src/stage1_normal_threshold_margin.py`
+- `tests/test_stage1_normal_threshold_margin.py`
+- `docs/step27_v1_normal_operating_condition_analysis.md`
+- 20 new automated unit tests passed.
+- All four Normal recordings reproduced prior results.
+- Full project regression suite: 312 passed.
+- Frozen RMS threshold and offline 5% rule unchanged.
+
+### Scientific Limitations
+
+- One Normal recording per motor-load setting.
+- Motor load is confounded with recording identity.
+- Recordings 97 and 98 were used for threshold calibration.
+- Recordings 99 and 100 have been evaluated previously.
+- No untouched independent Normal holdout.
+- Uniform amplitude scaling is simulated, not a measured
+  physical operating-condition transition.
+- No causal load effect or field false-alarm rate established.
+- Acquisition and preprocessing confounding remains.
+
+### Next Action
+
+Review the Step 27.12-11V files, commit the results,
+and select the next research task without retuning
+the frozen baseline on previously evaluated recordings.
 
 ---
 
