@@ -7,7 +7,7 @@
 **Language:** Python  
 **Current Milestone:** M1 — Foundations and Real Industrial Data Integration  
 **Last Completed Step:** Step 27.12-11W — W1–W3 Robustness Research  
-**Next Step:** Step 27.12-11W — Final Review and Git Commit  
+**Next Step:** Step 27.12-11X — Evaluation Readiness and Data Independence  
 **Automated Tests:** 326 passed (last full suite verified)  
 **Last Confirmed GitHub Commit:** `520a900` (Normal operating-condition analysis)  
 
@@ -1556,3 +1556,38 @@ When resuming this project in a future session:
 6. Record new results, unresolved limitations, tests, and commits.
 7. Preserve experimental integrity and avoid data leakage.
 8. When resuming the project, use the Next Step field at the top of PROJECT_STATUS.md as the single source of truth for determining where development should continue.
+
+## Step 27.12-11X — Evaluation Readiness and Data Independence
+
+**Completed**
+- Created the Stage 1 evaluation readiness protocol.
+- Audited historical recording-level data exposure.
+- Distinguished Step 24, Step 26, and later harmonized RMS evaluations.
+- Documented reuse of recordings 100 and 108.
+- Established a claim-to-evidence matrix.
+- Completed the evaluation readiness assessment.
+- Preserved the frozen Stage 1 RMS baseline.
+
+**Key Findings**
+- Step 24 used the historical RMS threshold of 0.18.
+- Step 26 used StandardScaler and LogisticRegression.
+- Both evaluated recordings 100 and 108.
+- The later harmonized RMS P99 threshold is 0.07467624803042527.
+- Current Stage 1 results are descriptive, not new independent holdout results.
+- All 49 local CWRU recordings have been examined.
+- Independent physical-bearing generalization remains unverified.
+- Industrial deployment readiness has not been established.
+
+**Research Decision**
+- Preserve existing results and historical evaluation context.
+- Do not claim independent validation for exploratory detector variants.
+- Do not select a new detector using previously evaluated recordings
+  and report its performance as untouched holdout accuracy.
+- Present Stage 1 as a reproducible CWRU research workflow
+  with explicit data independence and acquisition limitations.
+
+**Deliverables**
+- `docs/step27_x_evaluation_readiness_protocol.md`
+- `docs/step27_x_data_exposure_inventory.md`
+- `docs/step27_x_claim_to_evidence_matrix.md`
+- `docs/step27_x_evaluation_readiness_assessment.md`
